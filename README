@@ -1,0 +1,49 @@
+NAME
+    Catalyst::Helper::Ajax - Helper for Ajax
+
+SYNOPSIS
+        # run the helper...
+        script/create.pl Ajax
+
+        # ...add this to your tt2 template...
+        <script type="text/javascript">
+        <!-- [% INCLUDE http.js %] //-->
+        </script>
+
+        # ...and get a ready to use ajax object named http.
+        <script type="text/javascript"><!--
+        function doEdit() {
+            http.post(
+                '[% base %]edit/[% page.title %]',
+                'body=' + document.edit.body.value,
+                function () {
+                    var res = http.response();
+                    if ( res && res.status == 200 )
+                        document.getElementById('view').innerHTML = res.text;
+                }
+            );
+        }
+        //--></script>
+
+        <div id="view"></div>
+        <form name="edit">
+            <textarea name="body" cols="80" rows="24"
+                onKeyup="doEdit()">[% page.body %]</textarea>
+        </form>
+
+DESCRIPTION
+    This helper generates a simple to use oo javascript
+
+  METHODS
+   mk_stuff
+SEE ALSO
+    Catalyst::Manual, Catalyst::Test, Catalyst::Request, Catalyst::Response,
+    Catalyst::Helper
+
+AUTHOR
+    Sebastian Riedel, "sri@oook.de", Sascha Kiefer
+
+LICENSE
+    This library is free software . You can redistribute it and/or modify it
+    under the same terms as perl itself.
+
